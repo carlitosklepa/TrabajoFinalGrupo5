@@ -1,5 +1,12 @@
 from django.db import models
+from django.utils import timezone
 
 class Comentario(models.Model):
-    atributo_str = models.CharField(max_length=255)
-    atributo_decimal = models.DecimalField(max_digits=9, decimal_places=2)
+    Contenido = models.CharField(max_length=500, null=False)
+    autor = models.ForeignKey("usuarios", on_delete=models.CASCADE, )
+    fecha_publicacion = models.DateTimeField,
+    post_comentado = models.ForeignKey("publicaciones", on_delete=models.CASCADE, )
+
+    def publicacion(self):
+        self.fecha_publicacion = timezone.now()
+        self.save()

@@ -1,5 +1,4 @@
 from django.db import models
 
 class Categoria(models.Model):
-    atributo_str = models.CharField(max_length=255)
-    atributo_decimal = models.DecimalField(max_digits=9, decimal_places=2)
+    nombre = models.CharField(max_length=200, null=False)
