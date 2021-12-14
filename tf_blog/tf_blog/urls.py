@@ -16,9 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from . import views
+from . import views 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.inicio)
+    path('', views.inicio, name = "inicio"),
+    path('contacto/', views.contacto, name = "contacto"),
+    path('ingresar/', views.ingresar, name = "ingresar"),
+    path('registrarte/', views.registrarte, name = "registrarte"),
+    path('ods/', views.ods, name = "ods"),
+    path('post', views.post, name = "post")
 ]
