@@ -81,6 +81,18 @@ WSGI_APPLICATION = 'tf_blog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "postgres",
+        'USER': "postgres",
+        'PASSWORD': "1379",
+        "HOST": "localhost",
+        "PORT": "5432"
+    }
+}
+'''
+        ============= BD-SERGIO =============
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': "bd_blog_17ods",
         'USER': "postgres",
         'PASSWORD': "1",
@@ -88,7 +100,7 @@ DATABASES = {
         "PORT": "5433"
     }
 }
-
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -134,6 +146,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'),
     )
-    
-
-
