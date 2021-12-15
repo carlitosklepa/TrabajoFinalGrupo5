@@ -7,8 +7,9 @@ from django.urls                 import reverse_lazy
 from django.views.generic        import ListView, CreateView
 #from django.views.generic.detail import DetailView
 from django.views.generic.edit   import UpdateView
+from django.views.generic.edit   import DeleteView
 
-from apps.core.mixins import AdminRequiredMixins
+from tf_blog.apps.core.mixins import AdminRequiredMixins
 
 from .forms  import Publicacion_Form
 from .models import Publicacion
@@ -72,6 +73,7 @@ class EditarP_Admin(UpdateView):
 	def get_success_url(self, **kwargs):
 		return reverse_lazy("publicaciones:admin_listar")
 
+class EliminarP_Admin(DeleteView):
 
 """class Detalle(DetailView):
 	template_name = "productos/detalle.html"
