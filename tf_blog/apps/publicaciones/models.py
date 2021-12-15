@@ -9,7 +9,7 @@ class Publicacion(models.Model):
     categoria = models.ForeignKey("categorias.categoria", on_delete=models.CASCADE, )
     fecha_publicacion = models.DateTimeField(blank=True, null=True)
     fecha_de_Edicion = models.DateTimeField(default=timezone.now)
-    imagen_usuario = models.ImageField(upload_to="", null=True)
+    imagen_publicacion = models.ImageField(upload_to="", null=True)
 
     def publicacion(self):
         self.fecha_publicacion = timezone.now()
