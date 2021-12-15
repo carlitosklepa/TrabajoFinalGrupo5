@@ -25,5 +25,5 @@ urlpatterns = [
     path('ingresar/', views.ingresar, name = "ingresar"),
     path('registrarte/', views.registrarte, name = "registrarte"),
     path('ods/', views.ods, name = "ods"),
-    path('post', views.post, name = "post")
+    path('post/', views.post, name = "post")
 ]
