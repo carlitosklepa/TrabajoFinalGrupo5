@@ -51,7 +51,7 @@ class MisPubl(LoginRequiredMixin, AdminRequiredMixins, ListView):
 		return Publicacion.objects.filter(usuario_id=self.request.user.id).order_by("id")
 
 
-class NuevaP_Admin(LoginRequiredMixin, AdminRequiredMixins, CreateView):
+class NuevaP_Admin(AdminRequiredMixins, CreateView):
 	template_name = "pubicaciones/admin/nuevo.html"
 	model = Publicacion
 	form_class = Publicacion_Form
@@ -76,6 +76,6 @@ class EditarP_Admin(UpdateView):
 
 #class EliminarP_Admin(DeleteView):
 
-class Detalle(DetailView):
+class Post(DetailView):
 	template_name = "publicaciones/post.html"
 	model = Publicacion

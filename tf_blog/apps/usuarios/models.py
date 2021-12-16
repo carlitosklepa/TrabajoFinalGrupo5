@@ -6,7 +6,7 @@ class Usuario(AbstractUser):
 
     tipo = models.CharField(max_length=100, null=True)
 
-    imagen_usuario = models.ImageField(upload_to="", null=True)
+    imagen_usuario = models.ImageField(upload_to="usuarios", null=True)
 
     es_administrador = models.BooleanField(default=False)
 

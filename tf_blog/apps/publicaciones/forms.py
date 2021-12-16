@@ -1,6 +1,6 @@
 from django import forms
 
-from . models import Publicacion
+from .models import Publicacion
 
 class Publicacion_Form(forms.ModelForm):
 	titulo = forms.CharField(label="Titulo de la Publicación", widget=forms.TextInput(attrs={"class": "form-control", "placeholder":"Ingrese titulo de la publicación"}))
@@ -9,4 +9,4 @@ class Publicacion_Form(forms.ModelForm):
 
 	class Meta:
 		model = Publicacion
-		fields = ["titulo", "resumen", "Contenido", "imagen", "categoria"]
+		fields = ["titulo", "resumen", "Contenido", "imagen_publicacion"]

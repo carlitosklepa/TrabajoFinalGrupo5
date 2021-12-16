@@ -1,11 +1,11 @@
-from django.urls import path 
+from django.urls import path
 
 from . import views
 
-app_name = "categorias"
+app_name = "publicaciones"
 
 urlpatterns = [
-	#path("Detalle/<int:pk>/", views.Detalle.as_view(), name="detalle"),
+	path("post/<int:pk>/", views.Post.as_view(), name="post"),
 
 	# Admin
 	path("Admin/Listar/", views.ListarP_Admin.as_view(), name="admin_listar"),
@@ -13,5 +13,4 @@ urlpatterns = [
 	path("Admin/Editar/<int:pk>/", views.EditarP_Admin.as_view(), name="admin_editar"),
 
 	#-- la carpeta--path("MisPublicaciones/", views.MisPublicaciones.as_view(), name="mis_publicaciones")
-
 ]

@@ -37,10 +37,10 @@
             </li>
             {% if user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'inicio' %}">Mis Publicaciones</a>
+                <a class="nav-link" href="{% url 'publicaciones:admin_listar' %}">Mis Publicaciones</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'registrarte' %}">Nueva Publicación</a>
+                <a class="nav-link" href="{% url 'publicaciones:admin_nuevo' %}">Nueva Publicación</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'ingresar' %}">Salir</a>
