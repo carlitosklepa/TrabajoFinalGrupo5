@@ -20,10 +20,10 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.inicio, name = "inicio"),
-    path('contacto/', views.contacto, name = "contacto"),
-    path('ingresar/', views.ingresar, name = "ingresar"),
-    path('registrarte/', views.registrarte, name = "registrarte"),
+    path('', views.Inicio.as_view(), name = "inicio"),
+    path('contacto/', views.Contacto.as_view, name = "contacto"),
+    path('ingresar/', views.Ingresar.as_view, name = "ingresar"),
+    path('registrarte/', views.Registrarte.as_view, name = "registrarte"),
     path('ods/', views.ods, name = "ods"),
-    path('post/', views.post, name = "post")
+    path('post/', views.Post.as_view, name = "post")
 ]
