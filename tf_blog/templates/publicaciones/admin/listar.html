@@ -1,0 +1,12 @@
+{% extends "base/base.html" %}
+
+{% block contenido %}
+
+<h1>ESTA ES LA PLANTILLA PARA CREAR PUBLICACIONES</h1>
+<h1>ESTA ES LA PLANTILLA DE LISTAR PUBLICACIONES</h1>
+
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'publicaciones:admin_nuevo' %}">Nueva Publicación</a>
+</li>
+
+{% endblock contenido %}
