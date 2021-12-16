@@ -2,14 +2,15 @@
 
 # Create your views here.
 from django.contrib.auth.mixins  import LoginRequiredMixin
-#from django.shortcuts            import render
+from django.shortcuts            import render
 from django.urls                 import reverse_lazy
 from django.views.generic        import ListView, CreateView
-#from django.views.generic.detail import DetailView
+from django.views.generic.detail import DetailView
 from django.views.generic.edit   import UpdateView
+
 from django.views.generic.edit   import DeleteView
 
-from tf_blog.apps.core.mixins import AdminRequiredMixins
+from apps.core.mixins import AdminRequiredMixins
 
 from .forms  import Publicacion_Form
 from .models import Publicacion
@@ -25,7 +26,7 @@ class ListarP_Admin(LoginRequiredMixin, AdminRequiredMixins, ListView):
 	model = Publicacion
 	context_object_name="publicacion"
 	# permisos_requeridos = ["add_users"]
-	paginate_by = 2
+	paginate_by = 5
 
 	def get_context_data(self, **kwargs):
 		context = super(ListarP_Admin, self).get_context_data(**kwargs)
@@ -46,8 +47,8 @@ class MisPubl(LoginRequiredMixin, AdminRequiredMixins, ListView):
 	context_object_name = "publicaciones"
 
 	def get_queryset(self):
-		# self.request
-		return Publicacion.objects.filter(usuario__id=self.request.user.id)  # .order_by("id")
+		self.request
+		return Publicacion.objects.filter(usuario_id=self.request.user.id).order_by("id")
 
 
 class NuevaP_Admin(LoginRequiredMixin, AdminRequiredMixins, CreateView):
@@ -73,8 +74,8 @@ class EditarP_Admin(UpdateView):
 	def get_success_url(self, **kwargs):
 		return reverse_lazy("publicaciones:admin_listar")
 
-class EliminarP_Admin(DeleteView):
+#class EliminarP_Admin(DeleteView):
 
-"""class Detalle(DetailView):
-	template_name = "productos/detalle.html"
-	model = Producto"""
+class Detalle(DetailView):
+	template_name = "publicaciones/post.html"
+	model = Publicacion
