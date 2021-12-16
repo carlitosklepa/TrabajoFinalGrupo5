@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'apps.comentarios',
     'apps.publicaciones',
     'apps.usuarios',
-    'apps.autenticar_login',
+
 ]
 
 MIDDLEWARE = [
