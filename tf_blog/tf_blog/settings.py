@@ -84,12 +84,22 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': "postgres",
         'USER': "postgres",
-        'PASSWORD': "1379",
+        'PASSWORD': "1234",
         "HOST": "localhost",
         "PORT": "5432"
     }
 }
 '''
+        ============= BD-CARLOS =============
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "postgres",
+        'USER': "postgres",
+        'PASSWORD': "1379",
+        "HOST": "localhost",
+        "PORT": "5432"
+
         ============= BD-SERGIO =============
 DATABASES = {
     'default': {
