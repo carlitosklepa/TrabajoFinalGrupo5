@@ -1,20 +1,30 @@
 from django.shortcuts import render
 
+from django.views.generic.base import TemplateView
 
-def inicio(request):
-    return render(request, "inicio.html")
 
-def contacto(request):
-    return render(request, "contacto.html")
+class Inicio(TemplateView):
+    template_name = "inicio.html" 
 
-def ingresar(request):
-    return render(request, "ingresar.html")
 
-def registrarte(request):
-    return render(request, "registrarte.html")
+class Contacto(TemplateView):
+    template_name = "contacto.html" 
+
+class Ingresar(TemplateView):
+    template_name = "ingresar.html" 
+
+
+class Registrarte(TemplateView):
+    template_name = "registrarte.html" 
+
+
+class Post(TemplateView):
+    template_name = "post.html" 
 
 def ods(request):
     return render(request, "ods.html")
 
-def post(request):
-    return render(request, "post.html")
+
+
+
+    

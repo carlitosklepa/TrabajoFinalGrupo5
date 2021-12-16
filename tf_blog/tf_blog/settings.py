@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'apps.categorias',
     'apps.comentarios',
     'apps.publicaciones',
-    'apps.usuarios'
+    'apps.usuarios',
+
 ]
 
 MIDDLEWARE = [
@@ -83,12 +84,22 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': "postgres",
         'USER': "postgres",
-        'PASSWORD': "1379",
+        'PASSWORD': "1234",
         "HOST": "localhost",
         "PORT": "5432"
     }
 }
 '''
+        ============= BD-CARLOS =============
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "postgres",
+        'USER': "postgres",
+        'PASSWORD': "1379",
+        "HOST": "localhost",
+        "PORT": "5432"
+
         ============= BD-SERGIO =============
 DATABASES = {
     'default': {
@@ -146,3 +157,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'),
     )
+LOGIN_REDIRECT_URL: '/'    
