@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'apps.categorias',
     'apps.comentarios',
     'apps.publicaciones',
-    'apps.usuarios'
+    'apps.usuarios',
+    'apps.autenticar_login',
 ]
 
 MIDDLEWARE = [
@@ -146,3 +147,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'),
     )
+LOGIN_REDIRECT_URL: '/'    
