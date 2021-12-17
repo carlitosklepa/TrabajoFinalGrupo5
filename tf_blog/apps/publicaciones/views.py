@@ -61,7 +61,7 @@ class NuevaP_Admin(AdminRequiredMixins, CreateView):
 
 	def form_valid(self, form):
 		f = form.save(commit=False)
-		f.usuario_id = self.request.user.id
+		f.autor_id = self.request.user.id
 		return super(NuevaP_Admin, self).form_valid(form)
 
 
@@ -70,7 +70,7 @@ class EditarP_Admin(UpdateView):
 	model = Publicacion
 	form_class = Publicacion_Form
 	context_object_name = "publicacion"
-
+#
 	def get_success_url(self, **kwargs):
 		return reverse_lazy("publicaciones:admin_listar")
 
