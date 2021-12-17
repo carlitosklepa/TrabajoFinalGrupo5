@@ -24,13 +24,13 @@ def detalle(request):
 class ListarP_Admin(LoginRequiredMixin, AdminRequiredMixins, ListView):
 	template_name="publicaciones/admin/listar.html"
 	model = Publicacion
-	context_object_name="publicacion"
+	context_object_name="publicaciones"
 	# permisos_requeridos = ["add_users"]
 	paginate_by = 5
 
 	def get_context_data(self, **kwargs):
 		context = super(ListarP_Admin, self).get_context_data(**kwargs)
-		context["publicacion_buscada"] = self.request.GET.get("titulo_publicacion", "")
+		context["titulo_buscada"] = self.request.GET.get("titulo_publicacion", "")
 		return context
 
 	def get_queryset(self):
@@ -66,10 +66,10 @@ class NuevaP_Admin(AdminRequiredMixins, CreateView):
 
 
 class EditarP_Admin(UpdateView):
-	template_name = "publicaciones/admin/editar.html"
+	template_name = "publicaciones/admin/editar_p.html"
 	model = Publicacion
 	form_class = Publicacion_Form
-	context_object_name = "publicacion"
+	#context_object_name = "publicacion"
 
 	def get_success_url(self, **kwargs):
 		return reverse_lazy("publicaciones:admin_listar")
