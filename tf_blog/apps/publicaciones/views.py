@@ -70,7 +70,7 @@ class EditarP_Admin(UpdateView):
 	model = Publicacion
 	form_class = Publicacion_Form
 	context_object_name = "publicacion"
-#
+
 	def get_success_url(self, **kwargs):
 		return reverse_lazy("publicaciones:admin_listar")
 

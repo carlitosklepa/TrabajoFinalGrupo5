@@ -22,7 +22,7 @@ class Publicacion(models.Model):
     imagen_publicacion = models.ImageField(upload_to="publicaciones", null=True)
     guardar_como_borrador = models.BooleanField(default=True)
     categorias= models.ManyToManyField(Categoria)
-#
+
     def publicacion(self):
         self.fecha_publicacion = timezone.now()
         self.save()
