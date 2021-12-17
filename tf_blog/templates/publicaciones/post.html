@@ -1,13 +1,28 @@
 {% extends "base/base.html" %}
-
+{% load static %}
 {% block contenido %}
-
-<h1>COSAS QUE ESTAN EN EL NUEVA PUBLICACION</h1>
-<h1>COSAS QUE ESTAN EN EL NUEVA PUBLICACION</h1>
-
-<h2>En esta vista vamos a ver el post en el que hacemos click y, si estamos logueados (autenticados), vamos a poder comentar.
-El Admin va a poder ponerlo como borrador y eliminarlo. O borrar comentarios.
-</h2>
-
+  <h1>ALGO QUE NO SE VE</h1>
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-3">
+        {% if object.imagen_publicacion %}
+          <img src="{{object.imagen_publicacion.url}}" alt="" class="img-fluid rounded-start">
+        {% else %}
+        <!--poner una imagen personalizada:
+        <img src="{% static 'images/default/nombre_de_la_imagen.jpg' %}" alt="" class="bd-placeholder-img card-img-top" width="100%" height="225">
+      -->
+          <svg class="img-fluid rounded-start" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
+        {% endif %}
+      </div>
+      <div class="col-md-7">
+        <div class="card-body">
+          <h5 class="card-title">{{object.titulo}}</h5>
+          <p class="card-text">{{object.resumen}}</p>
+          <p class="card-text">{{object.Contenido}}</p>
+          <p class="card-text"><small class="text-muted"><span class="badge bg-primary">{{object.categorias.nombre}}</span></small></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock contenido %}

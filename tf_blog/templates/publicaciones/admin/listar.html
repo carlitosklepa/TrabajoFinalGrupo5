@@ -38,7 +38,7 @@
           <td>{{p.titulo}}</td>
           <td>{{p.autor}}</td>
           <td>
-            <a href="#">Ver</a>
+            <a href="{% url 'publicaciones:post' p.id %}">Ver</a>
             <a href="{% url 'publicaciones:admin_editar' p.id %}">Editar</a>
             <a href="#">Eliminar</a>
           </td>
