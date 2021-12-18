@@ -21,6 +21,9 @@ class Registrarte(TemplateView):
 class Post(TemplateView):
     template_name = "post.html" 
 
+class Registro(TemplateView):
+    template_name = "registro.html" 
+
 def ods(request):
     return render(request, "ods.html")
 

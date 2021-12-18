@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -15,7 +15,7 @@
 
     <title>Blog Login</title>
   </head>
-  <body class="bg-dark">
+  <body class="bg-white">
 
       <section>
           <div class="row g-0">
@@ -23,17 +23,17 @@
                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                       <div class="carousel-item active">
-                        <img src="C:\Users\ldz-z\OneDrive\Escritorio\BLOG\blog_info\users\imagenes\imagen2.jpg" class="d-block w-100" alt="..."
+                        <img src="../../static/img/about-bg.jpg" class="d-block w-100" alt="..."
                         width="700"
                         height="700">
                       </div>
                       <div class="carousel-item">
-                        <img src="C:\Users\ldz-z\OneDrive\Escritorio\BLOG\blog_info\users\imagenes\imagen1.jpg" class="d-block w-100" alt="..."
+                        <img src="../../static/img/post-bg.jpg" class="d-block w-100" alt="..."
                         width="700"
                         height="700">
                       </div>
                       <div class="carousel-item">
-                        <img src="C:\Users\ldz-z\OneDrive\Escritorio\BLOG\blog_info\users\imagenes\imagen4.jpg" class="d-block w-100" alt="..."
+                        <img src="../../static/img/contact-bg.jpg" class="d-block w-100" alt="..."
                         width="700"
                         height="700" >
                       </div>
@@ -53,13 +53,12 @@
 
             <div class="col-lg-5 d-flex flex-column aling-items-end min-vh-100">
                 <div>
-                    <div class="px-lg-5 pt-lg-4 pb-lg-3 p-4 ">
-                    <img src="C:\Users\ldz-z\OneDrive\Escritorio\BLOG\blog_info\users\imagenes\logo1.png" class="img-fluid"
-                    width="150"
-                    height="150">
-                    </div>
+                    
                     <div class="px-lg-5 py-lg-4 p-4 w-100 ">
                     <h1>Bienvenido de nuevo</h1>
+                    <style>
+                      h1 {text-align: center;}
+                     </style>
                     <form>
                         <div class="mb-4">
                           <label for="exampleInputEmail1" class="form-label">Usuario</label>
@@ -68,7 +67,7 @@
                         <div class="mb-4">
                           <label for="exampleInputPassword1" class="form-label">Contraseña</label>
                           <input type="password" class="form-control bg-dark-x border-0" placeholder="Ingresa tu contraseña" id="exampleInputPassword1">
-                          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" id="passwordHelp" class="form-text text-muted text-decoration-none">¿Has olvidado tu contraseña?.>
+                          <a href="{% url 'registro' %}" id="passwordHelp" class="form-text text-muted text-decoration-none">¿Has olvidado tu contraseña?.>
                         </div>
                         <div class="mb-3 form-check">
                           <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -78,15 +77,9 @@
                         <div class="px-lg-2 py-lg-2 p-2"></div>
                         <div><button type="button" class="btn btn-outline-danger w-100">Cancelar</button></div>
                         <div class="px-lg-2 py-lg-2 p-2"></div>
-                        <div><button type="button" class="btn btn-outline-success w-100"> Registrarse</button></div>
+                        <div><button type="button" class="btn btn-outline-success w-100">Registrarse</button></div>
                       </form>
-                      <div class=" py-lg-2 "></div>
-                      <p class="font-weight-bold text-center "> Inicia sesion con </p>
-                      <div class=" d-flex justify-content-around">
-                      <div><button type="button" class="btn btn-outline-light flex-grow-1 mr-2"> <i class="fab fa-google"></i> Google</button></div>
-                      <div><button type="button" class="btn btn-outline-light ml-2"> <i class="fab fa-facebook-f"></i> Facebook</button></div>
-                    </div>
-
+                      
                 </div>
 
             </div>

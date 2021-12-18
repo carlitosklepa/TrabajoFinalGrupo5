@@ -27,6 +27,7 @@ urlpatterns = [
     path('contacto/', views.Contacto.as_view(), name = "contacto"),
     path('ingresar/', views.Ingresar.as_view(), name = "ingresar"),
     path('registrarte/', views.Registrarte.as_view(), name = "registrarte"),
+    path('registro/', views.Registro.as_view(), name = "registro"),
     path('ods/', views.ods, name = "ods"),
 
     #path('comentarios/', include('apps.comentarios.urls')),

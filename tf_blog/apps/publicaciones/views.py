@@ -50,7 +50,6 @@ class MisPubl(LoginRequiredMixin, AdminRequiredMixins, ListView):
 		self.request
 		return Publicacion.objects.filter(usuario_id=self.request.user.id).order_by("id")
 
-
 class NuevaP_Admin(AdminRequiredMixins, CreateView):
 	template_name = "pubicaciones/admin/nuevo.html"
 	model = Publicacion

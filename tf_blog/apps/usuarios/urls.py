@@ -2,7 +2,7 @@ from django.urls import path
 
 from . import views
 
-app_name = "publiaciones"
+app_name = "publicaciones"
 
 urlpatterns = [
 	#path("Detalle/<int:pk>/", views.Detalle.as_view(), name="detalle"),

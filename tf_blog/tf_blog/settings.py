@@ -81,11 +81,11 @@ WSGI_APPLICATION = 'tf_blog.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "postgres",
+        'NAME': "bd_blog_17ods",
         'USER': "postgres",
         'PASSWORD': "1234",
         "HOST": "localhost",
@@ -104,6 +104,7 @@ DATABASES = {
         "PORT": "5432"
     }
 }
+'''
 '''
         ============= BD-SERGIO =============
 DATABASES = {
