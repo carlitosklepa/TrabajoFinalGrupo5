@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_URL = reverse_lazy("login")
+LOGIN_URL = reverse_lazy("ingresar")
 LOGIN_REDIRECT_URL = reverse_lazy("inicio")
 
 AUTH_USER_MODEL = 'usuarios.Usuario'
@@ -93,7 +93,7 @@ DATABASES = {
         "PORT": "5432"
     }
 }
-'''
+
 
 DATABASES = {
     'default': {
@@ -107,18 +107,18 @@ DATABASES = {
 }
 
 '''
-        ============= BD-SERGIO =============
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "bd_blog_17ods",
+        'NAME': "blog_2",
         'USER': "postgres",
         'PASSWORD': "1",
         "HOST": "localhost",
         "PORT": "5433"
     }
 }
-'''
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
