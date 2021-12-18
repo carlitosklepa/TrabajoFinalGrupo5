@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from apps.publicaciones.models import Publicacion
+from apps.usuarios.models import Usuario
 from django.views.generic import ListView
 
 
@@ -10,7 +11,7 @@ class Inicio(ListView):
     context_object_name="publicaciones"
 
     def get_queryset(self):
-        return Publicacion.objects.filter(guardar_como_borrador=False)
+        return Publicacion.objects.filter(guardar_como_borrador=False) and Usuario.objects.filter(tipo__in=[2])
 '''
 
 class Inicio(TemplateView):

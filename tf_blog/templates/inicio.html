@@ -35,16 +35,25 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'contacto' %}">Sobre Nosotros</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'publicaciones:admin_listar' %}">Publicaciones</a>
+            </li>
             {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'publicaciones:admin_listar' %}">Mis Publicaciones</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'publicaciones:admin_nuevo' %}">Nueva Publicación</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'salir' %}">Salir</a>
-              </li>
+              {% if user.es_administrador %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'ingresar' %}">Menu de admin</a>
+                </li>
+                {% if user.tipo == 2 %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'publicaciones:admin_nuevo' %}">Mis Publicaciones</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'publicaciones:admin_nuevo' %}">Nueva Publicación</a></li>
+                {% endif %}
+              {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'salir' %}">Salir</a>
+            </li>
             {% else %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'ingresar' %}">Ingresar</a>
@@ -53,6 +62,7 @@
                 <a class="nav-link" href="{% url 'registrarte' %}">Registrarte</a>
               </li>
             {% endif %}
+
           </ul>
         </div>
       </div>
