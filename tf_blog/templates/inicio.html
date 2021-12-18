@@ -75,34 +75,28 @@
     <!-- Barra de Busqueda
     {% include "base/buscar.html" %}  -->
 
-    {% include "base/sidebar.html" %}
+    <!-- TRATAR DE HACER ANDAR: BARRA LATERAL
+    {% include "base/sidebar.html" %} -->
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col"> <!-- VER LOS ÚLTIMOS 3 POST -->
+        <div class="col">
           <div class="row justify-content-center">
-          <div class="col" style="text-align: center;">
-                  <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
 
-                  <h2 style="text-align: center;">Título del Post</h2>
-                  <p>Resumen del post.</p>
-                  <p><a class="btn btn-secondary" href="#">Ver Publicación »</a></p>
-                </div><!-- /.col-lg-4 -->
-          <div class="col" style="text-align: center;">
+            <!-- TRATAR DE HACER ANDAR: VER LOS ÚLTIMOS 3 POST
+            {% for p in publicaciones %}
+              <div class="col" style="text-align: center;">
+                {% if p.imagen_publicacion %}
+                  <img src="{{p.imagen_publicacion.url}}" alt="" class="bd-placeholder-img rounded-circle" width="140" height="140">
+                {% else %}
                   <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+                {% endif %}
+                <h2 style="text-align: center;">{{p.titulo}}</h2>
+                <p>{{p.resumen}}</p>
+                <p><a class="btn btn-secondary" href="{% url 'publicaciones:post' p.id %}">Ver Publicación »</a></p>
+              </div>
+            {% endfor %}  -->
 
-                  <h2 style="text-align: center;">Título del Post</h2>
-                  <p>Resumen del post.</p>
-                  <p><a class="btn btn-secondary" href="#">Ver Publicación »</a></p>
-                </div><!-- /.col-lg-4 -->
-          <div class="col" style="text-align: center;">
-                  <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-                  <h2 style="text-align: center;">Título del Post</h2>
-                  <p>Resumen del post.</p>
-                  <p><a class="btn btn-secondary" href="#">Ver Publicación »</a></p>
-                </div><!-- /.col-lg-4 -->
-          </div>
 
           <div class="border-top my-3"></div>
 

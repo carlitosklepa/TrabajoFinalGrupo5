@@ -4,7 +4,6 @@ from django.contrib.auth.models import AbstractUser
 TIPO_CHOICES = (
     (1, "Lector"),
     (2, "Escritor")
-
 )
 
 class Usuario(AbstractUser):
@@ -18,7 +17,3 @@ class Usuario(AbstractUser):
 
     def __str__(self):
         return self.get_full_name()
-
-
-
-

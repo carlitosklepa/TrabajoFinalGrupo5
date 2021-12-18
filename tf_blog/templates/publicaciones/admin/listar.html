@@ -8,7 +8,7 @@
 <form class="form-inline my-2 my-lg-0" style="padding:50px;" method="GET">
   <div class="row">
     <div class="col-md-10">
-      <input class="form-control mr-sm-2" name="nombre_producto" type="search" placeholder="Ingrese nombre del producto..." aria-label="Search" value="{{nombre_buscado}}">
+      <input class="form-control mr-sm-2" name="titulo" type="search" placeholder="Ingrese el titulo de la publicación..." aria-label="Search" value="{{nombre_buscado}}">
     </div>
     <div class="col-md-2">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
@@ -18,7 +18,7 @@
 
 <div class="row" style="padding: 10px">
   <div class="col">
-    <a href="{% url 'publicaciones:admin_nuevo'%}" class="btn btn-success">Nuevo</a>
+    <a href="{% url 'publicaciones:admin_nuevo' %}" class="btn btn-success">Nuevo</a>
   </div>
 </div>
 

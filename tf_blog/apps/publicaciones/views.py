@@ -18,7 +18,7 @@ from .models import Publicacion
 """
 def detalle(request):
 	context = {}
-	return render(request, "productos/detalle.html", context)
+	return render(request, "publicaciones/detalle.html", context)
 """
 
 class ListarP_Admin(LoginRequiredMixin, AdminRequiredMixins, ListView):
@@ -50,13 +50,13 @@ class MisPubl(LoginRequiredMixin, AdminRequiredMixins, ListView):
 		self.request
 		return Publicacion.objects.filter(usuario_id=self.request.user.id).order_by("id")
 
-class NuevaP_Admin(AdminRequiredMixins, CreateView):
-	template_name = "pubicaciones/admin/nuevo.html"
+class NuevaP_Admin(CreateView):
+	template_name = "publicaciones/admin/nuevo.html"
 	model = Publicacion
 	form_class = Publicacion_Form
 
 	def get_success_url(self, **kwargs):
-		return reverse_lazy("publicacion:admin_listar")
+		return reverse_lazy("publicaciones:admin_listar")
 
 	def form_valid(self, form):
 		f = form.save(commit=False)
@@ -78,3 +78,16 @@ class EditarP_Admin(UpdateView):
 class Post(DetailView):
 	template_name = "publicaciones/post.html"
 	model = Publicacion
+
+class NuevaP(LoginRequiredMixin, CreateView):
+	template_name = "pubicaciones/nuevo.html"
+	model = Publicacion
+	form_class = Publicacion_Form
+
+	def get_success_url(self, **kwargs):
+		return reverse_lazy("publicaciones:admin_listar")
+
+	def form_valid(self, form):
+		f = form.save(commit=False)
+		f.autor_id = self.request.user.id
+		return super(NuevaP_Admin, self).form_valid(form)
