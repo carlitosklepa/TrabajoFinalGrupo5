@@ -93,7 +93,7 @@ DATABASES = {
         "PORT": "5432"
     }
 }
-
+'''
 
 DATABASES = {
     'default': {
@@ -118,7 +118,7 @@ DATABASES = {
         "PORT": "5433"
     }
 }
-
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
