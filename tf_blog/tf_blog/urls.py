@@ -28,7 +28,9 @@ urlpatterns = [
     path('ingresar/', views.Ingresar.as_view(), name = "ingresar"),
     path('registrarte/', views.Registrarte.as_view(), name = "registrarte"),
     path('registro/', views.Registro.as_view(), name = "registro"),
-    path('ods/', views.ods, name = "ods"),
+    path('ods/', views.Ods.as_view(), name = "ods"),
+    
+    
 
     #path('comentarios/', include('apps.comentarios.urls')),
     path('publicacion/', include('apps.publicaciones.urls')),

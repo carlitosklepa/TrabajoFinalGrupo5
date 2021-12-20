@@ -4,11 +4,12 @@
 from django.contrib.auth.mixins  import LoginRequiredMixin
 from django.shortcuts            import render
 from django.urls                 import reverse_lazy
-from django.views.generic        import ListView, CreateView
+from django.views.generic        import ListView, CreateView, View
 from django.views.generic.detail import DetailView
 from django.views.generic.edit   import UpdateView
 
 from django.views.generic.edit   import DeleteView
+from django.contrib.auth.decorators import login_required
 
 from apps.core.mixins import AdminRequiredMixins
 
@@ -91,3 +92,45 @@ class NuevaP(LoginRequiredMixin, CreateView):
 		f = form.save(commit=False)
 		f.autor_id = self.request.user.id
 		return super(NuevaP_Admin, self).form_valid(form)
+
+
+
+
+
+# Comentarios lo dejé como estaba, hay que modificar el codigo 
+
+# @views.route("/create-comentarios/<post_id>", methods=['POST'])
+@login_required
+def create_comment(post_id):
+    text = request.form.get('text')
+	
+
+    if not text:
+        flash('Comment cannot be empty.', category='error')
+    else:
+        post = Post.query.filter_by(id=post_id)
+        if post:
+            comment = Comment(
+                text=text, author=current_user.id, post_id=post_id)
+            db.session.add(comment)
+            db.session.commit()
+        else:
+            flash('Post does not exist.', category='error')
+
+    return redirect(url_for('views.comment/'))
+
+
+# @views.route("/delete-comment/<comment_id>")
+@login_required
+def delete_comment(comment_id):
+    comment = Comment.query.filter_by(id=comment_id).first()
+
+    if not comment:
+        flash('Comment does not exist.', category='error')
+    elif current_user.id != comment.author and current_user.id != comment.post.author:
+        flash('You do not have permission to delete this comment.', category='error')
+    else:
+        db.session.delete(comment)
+        db.session.commit()
+
+    return redirect(url_for('views.home'))
