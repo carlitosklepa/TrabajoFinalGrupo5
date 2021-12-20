@@ -15,5 +15,8 @@ class Usuario(AbstractUser):
 
     es_administrador = models.BooleanField(default=False)
 
+    class Meta:
+        db_table="usuarios"
+
     def __str__(self):
         return self.get_full_name()

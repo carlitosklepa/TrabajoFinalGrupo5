@@ -35,16 +35,25 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'contacto' %}">Sobre Nosotros</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'publicaciones:admin_listar' %}">Publicaciones</a>
+            </li>
             {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'publicaciones:admin_listar' %}">Mis Publicaciones</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'publicaciones:admin_nuevo' %}">Nueva Publicación</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'ingresar' %}">Salir</a>
-              </li>
+              {% if user.es_administrador %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'ingresar' %}">Menu de admin</a>
+                </li>
+                {% if user.tipo == 2 %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'publicaciones:admin_nuevo' %}">Mis Publicaciones</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'publicaciones:admin_nuevo' %}">Nueva Publicación</a></li>
+                {% endif %}
+              {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'salir' %}">Salir</a>
+            </li>
             {% else %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'ingresar' %}">Ingresar</a>
@@ -53,6 +62,7 @@
                 <a class="nav-link" href="{% url 'registrarte' %}">Registrarte</a>
               </li>
             {% endif %}
+
           </ul>
         </div>
       </div>
@@ -95,7 +105,7 @@
                 <p>{{p.resumen}}</p>
                 <p><a class="btn btn-secondary" href="{% url 'publicaciones:post' p.id %}">Ver Publicación »</a></p>
               </div>
-            {% endfor %}  -->
+            {% endfor %}-->
 
 
           <div class="border-top my-3"></div>
@@ -122,6 +132,33 @@
               <a class="btn btn-primary float-right" href="{% url 'ods' %}">Seguir leyendo &rarr;</a> -->
             </div>
           </div>
+
+        {% if user.es_administrador %}
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-preview">
+              <a href="{% url 'ods' %}">
+                <h2 class="post-title">
+                  VOY A VER ESTO SOLO SI SOY ADMINISTRADOR
+                </h2>
+                <h3 class="post-subtitle">
+                  Los objetivos de desarrollo sostenible (ODS) son una llamada a la acción a todos los países para erradicar la pobreza y proteger el planeta así como garantizar la paz y la prosperidad.
+                </h3>
+              </a>
+              <p class="post-meta">Posted by
+                <a href="#">Start Bootstrap</a>
+                on September 24, 2018</p>
+            </div>
+              <hr>
+            <!-- Pager -->
+            <div class="clearfix">
+              <a class="btn btn-primary float-right" href="#">Siguientes Posts &rarr;</a>
+            </div>
+          </div>
+        {% endif %}
+
+
+
+
         </div>
       </div>
     </div>

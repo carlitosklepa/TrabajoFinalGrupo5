@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_URL = reverse_lazy("login")
+LOGIN_URL = reverse_lazy("ingresar")
 LOGIN_REDIRECT_URL = reverse_lazy("inicio")
 
 AUTH_USER_MODEL = 'usuarios.Usuario'
@@ -107,11 +107,16 @@ DATABASES = {
     }
 }
 
+<<<<<<< HEAD
         ============= BD-SERGIO =============
+=======
+
+
+ >>>>>>> c22afb414974678f8e99555d7b0fac6a031700d1
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "bd_blog_17ods",
+        'NAME': "blog_2",
         'USER': "postgres",
         'PASSWORD': "1",
         "HOST": "localhost",
