@@ -9,4 +9,4 @@ class Publicacion_Form(forms.ModelForm):
 
 	class Meta:
 		model = Publicacion
-		fields = ["titulo", "resumen", "Contenido", "imagen_publicacion", "guardar_como_borrador"]
+		fields = ["titulo", "resumen", "Contenido", "categorias", "imagen_publicacion", "guardar_como_borrador"]

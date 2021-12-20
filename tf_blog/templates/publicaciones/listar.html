@@ -1,0 +1,65 @@
+{% extends "base/base.html" %}
+
+{% block contenido %}
+<br>
+<br>
+<br>
+
+<!--
+<div class="row" style="padding: 10px">
+  <div class="col">
+    <a href="{% url 'publicaciones:nuevo' %}" class="btn btn-success">Nuevo</a>
+  </div>
+</div>
+
+<table class="table table-success table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Titulo</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in publicaciones %}
+        {% if p.guardar_como_borrador == False %}
+          <tr>
+            <th scope="row">{{p.id}}</th>
+            <td>{{p.titulo}}</td>
+            <td>{{p.autor}}</td>
+            <td>
+              <a href="{% url 'publicaciones:post' p.id %}">Ver</a>
+              <a href="{% url 'publicaciones:admin_editar' p.id %}">Editar</a>
+              <a href="#">Eliminar</a>
+            </td>
+
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+</table>
+-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="row justify-content-center">
+        {% for p in publicaciones %}
+          {% if p.guardar_como_borrador == False %}
+            <div class="col" style="text-align: center;">
+              {% if p.imagen_publicacion %}
+                <img src="{{p.imagen_publicacion.url}}" alt="" class="bd-placeholder-img rounded-circle" width="140" height="140">
+              {% else %}
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+              {% endif %}
+              <h2 style="text-align: center;">{{p.titulo}}</h2>
+              <p>{{p.resumen}}</p>
+              <p><a class="btn btn-secondary" href="{% url 'publicaciones:post' p.id %}">Ver Publicación »</a></p>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock contenido %}

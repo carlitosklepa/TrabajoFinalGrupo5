@@ -1,0 +1,10 @@
+<aside class="sidebar sidebar-sticky">
+  <div class="card mb-4">
+    <div class="card-body">
+      <h4 class="card-title">Categorías</h4>
+      {% for c in categorias %}
+        <a class="btn btn-light btn-sm mb-1" href="">{{c.nombre}}</a>
+      {% endfor %}
+    </div>
+  </div>
+</aside>

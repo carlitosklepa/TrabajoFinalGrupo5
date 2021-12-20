@@ -41,7 +41,6 @@ class ListarP_Admin(LoginRequiredMixin, AdminRequiredMixins, ListView):
 			query = query.filter(titulo__icontains=busqueda_titulo)
 		return query
 
-
 class MisPubl(LoginRequiredMixin, AdminRequiredMixins, ListView):
 	template_name = "publicaciones/admin/listar.html"
 	model = Publicacion
@@ -50,7 +49,7 @@ class MisPubl(LoginRequiredMixin, AdminRequiredMixins, ListView):
 	def get_queryset(self):
 		self.request
 		return Publicacion.objects.filter(usuario_id=self.request.user.id).order_by("id")
-
+'''
 class NuevaP_Admin(CreateView):
 	template_name = "publicaciones/admin/nuevo.html"
 	model = Publicacion
@@ -63,7 +62,7 @@ class NuevaP_Admin(CreateView):
 		f = form.save(commit=False)
 		f.autor_id = self.request.user.id
 		return super(NuevaP_Admin, self).form_valid(form)
-
+'''
 
 class EditarP_Admin(UpdateView):
 	template_name = "publicaciones/admin/editar_p.html"
@@ -72,7 +71,7 @@ class EditarP_Admin(UpdateView):
 	#context_object_name = "publicacion"
 
 	def get_success_url(self, **kwargs):
-		return reverse_lazy("publicaciones:admin_listar")
+		return reverse_lazy("publicaciones:admin_menu")
 
 #class EliminarP_Admin(DeleteView):
 
@@ -81,29 +80,83 @@ class Post(DetailView):
 	model = Publicacion
 
 class NuevaP(LoginRequiredMixin, CreateView):
-	template_name = "pubicaciones/nuevo.html"
+	template_name = "publicaciones/nuevo.html"
 	model = Publicacion
 	form_class = Publicacion_Form
 
 	def get_success_url(self, **kwargs):
-		return reverse_lazy("publicaciones:admin_listar")
+		return reverse_lazy("publicaciones:listar")
 
 	def form_valid(self, form):
 		f = form.save(commit=False)
 		f.autor_id = self.request.user.id
-		return super(NuevaP_Admin, self).form_valid(form)
+		return super(NuevaP, self).form_valid(form)
+
+class ListarP(ListView):
+	template_name="publicaciones/listar.html"
+	model = Publicacion
+	context_object_name="publicaciones"
+	# permisos_requeridos = ["add_users"]
+	#paginate_by = 10
+
+	def get_context_data(self, **kwargs):
+		context = super(ListarP, self).get_context_data(**kwargs)
+		context["titulo_buscada"] = self.request.GET.get("titulo_publicacion", "")
+		return context
+
+	def get_queryset(self):
+		busqueda_titulo = self.request.GET.get("titulo_publicacion", "")
+		query = Publicacion.objects.all().order_by("titulo")
+		if len(busqueda_titulo) > 0:
+			query = query.filter(titulo__icontains=busqueda_titulo)
+		return query
+
+class ListarC(ListView):
+	#template_name="publicaciones/listar.html"
+	model = Publicacion
+	context_object_name="categorias"
+	# permisos_requeridos = ["add_users"]
+	#paginate_by = 10
+
+	def get_context_data(self, **kwargs):
+		context = super(ListarC, self).get_context_data(**kwargs)
+		context["nombre_buscado"] = self.request.GET.get("nombre_categoria", "")
+		return context
+
+	def get_queryset(self):
+		busqueda_titulo = self.request.GET.get("nombre_categoria", "")
+		query = Publicacion.objects.all().order_by("nombre")
+		if len(busqueda_titulo) > 0:
+			query = query.filter(titulo__icontains=busqueda_titulo)
+		return query
+
+class MenuP(LoginRequiredMixin, AdminRequiredMixins, ListView):
+	template_name="publicaciones/admin/menu.html"
+	model = Publicacion
+	context_object_name="publicaciones"
+	# permisos_requeridos = ["add_users"]
+	#paginate_by = 10
+
+	def get_context_data(self, **kwargs):
+		context = super(MenuP, self).get_context_data(**kwargs)
+		context["titulo_buscada"] = self.request.GET.get("titulo_publicacion", "")
+		return context
+
+	def get_queryset(self):
+		busqueda_titulo = self.request.GET.get("titulo_publicacion", "")
+		query = Publicacion.objects.all().order_by("titulo")
+		if len(busqueda_titulo) > 0:
+			query = query.filter(titulo__icontains=busqueda_titulo)
+		return query
 
 
-
-
-
-# Comentarios lo dejé como estaba, hay que modificar el codigo 
+# Comentarios lo dejé como estaba, hay que modificar el codigo
 
 # @views.route("/create-comentarios/<post_id>", methods=['POST'])
 @login_required
 def create_comment(post_id):
     text = request.form.get('text')
-	
+
 
     if not text:
         flash('Comment cannot be empty.', category='error')

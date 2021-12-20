@@ -4,10 +4,10 @@ from django.utils import timezone
 
 
 class Categoria(models.Model):
-    nombre = models.CharField(max_length=200, default='')
+    nombre = models.CharField(max_length=200)
 
-    class meta:
-        bd_tabla:"categorias"
+    class Meta:
+        db_table="categorias"
 
     def __str__(self):
         return self.nombre
@@ -21,7 +21,7 @@ class Publicacion(models.Model):
     fecha_de_Edicion = models.DateTimeField(default=timezone.now)
     imagen_publicacion = models.ImageField(upload_to="publicaciones", null=True)
     guardar_como_borrador = models.BooleanField(default=True)
-    categorias= models.ManyToManyField(Categoria)
+    categorias = models.ManyToManyField(Categoria)
 
     def publicacion(self):
         self.fecha_publicacion = timezone.now()

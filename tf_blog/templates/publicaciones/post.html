@@ -1,7 +1,10 @@
 {% extends "base/base.html" %}
 {% load static %}
 {% block contenido %}
-  <h1>ALGO QUE NO SE VE</h1>
+{% include "base/sidebar2.html" %}
+  <br>
+  <br>
+  <br>
   <div class="card mb-3">
     <div class="row g-0">
       <div class="col-md-3">
@@ -20,76 +23,69 @@
           <p class="card-text">{{object.resumen}}</p>
           <p class="card-text">{{object.Contenido}}</p>
           <p class="card-text"><small class="text-muted"><span class="badge bg-primary">{{object.categorias.nombre}}</span></small></p>
-<!-- Comentarios   -->
         </div>
-        <div class="card-body">
-          <div class="card-text">{{post.text}}</div>
-          <br />
-          <div class="collapse" id="comments-{{post.id}}">
-            <div class="card">
-              <div class="card-body" id="comments-expanded-{{post.id}}">
-                {% for comment in post.comments %}
-                <div class="d-flex justify-content-between align-items-center">
-                  <div>
-                    <a href="/posts/{{comment.user.username}}"
-                      >{{comment.user.username}}</a
-                    >: {{comment.text}}
-                  </div>
-                  <div>
-                    <small class="text-muted"> {{comment.date_created}}</small>
-                    {% if user.id == comment.author or user.id == post.author %}
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-primary dropdown-toggle"
-                        data-bs-toggle="dropdown"
-                      ></button>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a
-                            href="/publicaion/post{{comment.id}}"
-                            class="dropdown-item"
-                            >Delete</a
-                          >
-                        </li>
-                      </ul>
-                    </div>
-                    {% endif %}
-                  </div>
-                </div>
-                {% endfor %}
+        {% for c in object.categorias.all %}<a href="" type="button" class="btn btn-outline-secondary">{{c.nombre}}</a>{% endfor %}
+      <div class="card-footer text-muted">{{object.fecha_publicacion}}</div>
+      </div>
+    </div>
+  </div>
+
+<!-- COMENTARIOS
+  <div class="card-body">
+    <div class="card-text">{{post.text}}</div>
+    <div class="collapse" id="comments-{{post.id}}">
+      <div class="card">
+        <div class="card-body" id="comments-expanded-{{post.id}}">
+          {% for comment in post.comments %}
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <a href="/posts/{{comment.user.username}}">{{comment.user.username}}</a>: {{comment.text}}
+            </div>
+            <div>
+              <small class="text-muted"> {{comment.date_created}}</small>
+              {% if user.id == comment.author or user.id == post.author %}
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown"></button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/publicaion/post{{comment.id}}" class="dropdown-item"
+                      >Delete</a>
+                  </li>
+                </ul>
               </div>
+              {% endif %}
             </div>
           </div>
-          <p class="card-text">
-            {% if post.comments|length > 0 %}
-            <a data-bs-toggle="collapse" href="#comments-{{post.id}}" role="button">
-              <small>View {{post.comments|length}} Comments</small>
-            </a>
-            {% else %}
-            <small class="text-muted">No Comments</small>
-            {% endif %}
-          </p>
-          <form
-            class="input-group mb-3"
-            method="POST"
-            action="publicacion/{{post.id}}"
-          >
-            <input
-              type="text"
-              id="text"
-              name="text"
-              class="form-control"
-              placeholder="Comment something!"
-            />
-            <button type="submit" class="btn btn-primary">Comment</button>
-          </form>
+          {% endfor %}
         </div>
-        <div class="card-footer text-muted">{{post.date_created}}</div>
       </div>
     </div>
 
-          
-    
+    <p class="card-text">
+      {% if post.comments|length > 0 %}
+      <a data-bs-toggle="collapse" href="#comments-{{post.id}}" role="button">
+        <small>View {{post.comments|length}} Comentar</small>
+      </a>
+      {% else %}
+      <small class="text-muted">Sin Comentarios</small>
+      {% endif %}
+    </p>
+    <form
+      class="input-group mb-3"
+      method="POST"
+      action="publicacion/{{post.id}}"
+    >{% csrf_token %}
+      <input
+        type="text"
+        id="text"
+        name="text"
+        class="form-control"
+        placeholder="Comenta algo...">
+      <button type="submit" class="btn btn-primary">Comentar</button>
+    </form>
+  </div>
+-->
 
+
+{% include "base/comentario.html" %}
 {% endblock contenido %}

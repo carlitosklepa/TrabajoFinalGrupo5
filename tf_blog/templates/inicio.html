@@ -36,19 +36,19 @@
               <a class="nav-link" href="{% url 'contacto' %}">Sobre Nosotros</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'publicaciones:admin_listar' %}">Publicaciones</a>
+              <a class="nav-link" href="{% url 'publicaciones:listar' %}">Publicaciones</a>
             </li>
             {% if user.is_authenticated %}
               {% if user.es_administrador %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'ingresar' %}">Menu de admin</a>
+                  <a class="nav-link" href="{% url 'publicaciones:admin_menu' %}">Menu de admin</a>
                 </li>
                 {% if user.tipo == 2 %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'publicaciones:admin_nuevo' %}">Mis Publicaciones</a>
+                  <a class="nav-link" href="">Mis Publicaciones</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'publicaciones:admin_nuevo' %}">Nueva Publicación</a></li>
+                  <a class="nav-link" href="{% url 'publicaciones:nuevo' %}">Nueva Publicación</a></li>
                 {% endif %}
               {% endif %}
             <li class="nav-item">
@@ -85,8 +85,8 @@
     <!-- Barra de Busqueda
     {% include "base/buscar.html" %}  -->
 
-    <!-- TRATAR DE HACER ANDAR: BARRA LATERAL
-    {% include "base/sidebar.html" %} -->
+    <!-- TRATAR DE HACER ANDAR: BARRA LATERAL-->
+    {% include "base/sidebar.html" %}
 
     <div class="container-fluid">
       <div class="row">
@@ -127,7 +127,7 @@
             <div class="clearfix">
               <a class="btn btn-primary float-right" href="{% url 'ods' %}">Seguir leyendo &rarr;</a>
               <hr>
-            <!-- Pager 
+            <!-- Pager
             <div class="clearfix">
               <a class="btn btn-primary float-right" href="{% url 'ods' %}">Seguir leyendo &rarr;</a> -->
             </div>
@@ -162,7 +162,7 @@
         </div>
       </div>
     </div>
-    
+
 
 
     <!-- Footer   -->
