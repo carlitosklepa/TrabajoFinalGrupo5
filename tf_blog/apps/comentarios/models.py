@@ -7,6 +7,9 @@ class Comentario(models.Model):
     fecha_publicacion = models.DateTimeField(default=timezone.now)
     post_comentado = models.ForeignKey("publicaciones.publicacion", on_delete=models.CASCADE, null=True)
 
+    class Meta:
+        db_table="comentarios"
+
     def publicacion(self):
         self.fecha_publicacion = timezone.now()
         self.save()
