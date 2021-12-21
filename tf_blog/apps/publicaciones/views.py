@@ -11,9 +11,10 @@ from django.views.generic.edit   import UpdateView
 from django.views.generic.edit   import DeleteView
 from django.contrib.auth.decorators import login_required
 
-from apps.core.mixins import AdminRequiredMixins
+from apps.core.mixins import AdminRequiredMixins, PermisosMixins
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .forms  import Publicacion_Form
+from .forms  import Publicacion_Form, PublicacionFiltroForms
 from .models import Publicacion
 
 """
@@ -21,7 +22,7 @@ def detalle(request):
 	context = {}
 	return render(request, "publicaciones/detalle.html", context)
 """
-
+'''
 class ListarP_Admin(LoginRequiredMixin, AdminRequiredMixins, ListView):
 	template_name="publicaciones/admin/listar.html"
 	model = Publicacion
@@ -31,16 +32,27 @@ class ListarP_Admin(LoginRequiredMixin, AdminRequiredMixins, ListView):
 
 	def get_context_data(self, **kwargs):
 		context = super(ListarP_Admin, self).get_context_data(**kwargs)
-		context["titulo_buscada"] = self.request.GET.get("titulo_publicacion", "")
+
+		busqueda_titulo = self.request.GET.get("titulo", None)
+		busqueda_categoria = self.request.GET.get("categorias", None)
+
+		context["form_filtro"] = PublicacionFiltroForms(initial={'titulo': busqueda_titulo, "categorias":(busqueda_categoria)})
+
 		return context
 
 	def get_queryset(self):
-		busqueda_titulo = self.request.GET.get("titulo_publicacion", "")
-		query = Publicacion.objects.all().order_by("titulo")
-		if len(busqueda_titulo) > 0:
-			query = query.filter(titulo__icontains=busqueda_titulo)
-		return query
+		busqueda_titulo = self.request.GET.get("titulo", None)
+		busqueda_categoria = self.request.GET.get("categorias", None)
 
+		query = Publicacion.objects.all().order_by("titulo")
+
+		if busqueda_titulo is not None and busqueda_titulo != "":
+			query = query.filter(titulo__icontains=busqueda_titulo)
+
+		if busqueda_categoria is not None and busqueda_categoria != "":
+			query = query.filter(categorias=busqueda_categoria)
+		return query
+'''
 class MisPubl(LoginRequiredMixin, AdminRequiredMixins, ListView):
 	template_name = "publicaciones/admin/listar.html"
 	model = Publicacion
@@ -79,7 +91,7 @@ class Post(DetailView):
 	template_name = "publicaciones/post.html"
 	model = Publicacion
 
-class NuevaP(LoginRequiredMixin, CreateView):
+class NuevaP(LoginRequiredMixin, PermisosMixins, CreateView):
 	template_name = "publicaciones/nuevo.html"
 	model = Publicacion
 	form_class = Publicacion_Form
@@ -97,18 +109,28 @@ class ListarP(ListView):
 	model = Publicacion
 	context_object_name="publicaciones"
 	# permisos_requeridos = ["add_users"]
-	#paginate_by = 10
 
 	def get_context_data(self, **kwargs):
 		context = super(ListarP, self).get_context_data(**kwargs)
-		context["titulo_buscada"] = self.request.GET.get("titulo_publicacion", "")
+
+		busqueda_titulo = self.request.GET.get("titulo", None)
+		busqueda_categoria = self.request.GET.get("categorias", None)
+
+		context["form_filtro"] = PublicacionFiltroForms(initial={'titulo': busqueda_titulo, "categorias":(busqueda_categoria)})
+
 		return context
 
 	def get_queryset(self):
-		busqueda_titulo = self.request.GET.get("titulo_publicacion", "")
+		busqueda_titulo = self.request.GET.get("titulo", None)
+		busqueda_categoria = self.request.GET.get("categorias", None)
+
 		query = Publicacion.objects.all().order_by("titulo")
-		if len(busqueda_titulo) > 0:
+
+		if busqueda_titulo is not None and busqueda_titulo != "":
 			query = query.filter(titulo__icontains=busqueda_titulo)
+
+		if busqueda_categoria is not None and busqueda_categoria != "":
+			query = query.filter(categorias=busqueda_categoria)
 		return query
 
 class ListarC(ListView):
@@ -135,18 +157,29 @@ class MenuP(LoginRequiredMixin, AdminRequiredMixins, ListView):
 	model = Publicacion
 	context_object_name="publicaciones"
 	# permisos_requeridos = ["add_users"]
-	#paginate_by = 10
+	paginate_by = 2
 
 	def get_context_data(self, **kwargs):
 		context = super(MenuP, self).get_context_data(**kwargs)
-		context["titulo_buscada"] = self.request.GET.get("titulo_publicacion", "")
+
+		busqueda_titulo = self.request.GET.get("titulo", None)
+		busqueda_categoria = self.request.GET.get("categorias", None)
+
+		context["form_filtro"] = PublicacionFiltroForms(initial={'titulo': busqueda_titulo, "categorias":(busqueda_categoria)})
+
 		return context
 
 	def get_queryset(self):
-		busqueda_titulo = self.request.GET.get("titulo_publicacion", "")
+		busqueda_titulo = self.request.GET.get("titulo", None)
+		busqueda_categoria = self.request.GET.get("categorias", None)
+
 		query = Publicacion.objects.all().order_by("titulo")
-		if len(busqueda_titulo) > 0:
+
+		if busqueda_titulo is not None and busqueda_titulo != "":
 			query = query.filter(titulo__icontains=busqueda_titulo)
+
+		if busqueda_categoria is not None and busqueda_categoria != "":
+			query = query.filter(categorias=busqueda_categoria)
 		return query
 
 

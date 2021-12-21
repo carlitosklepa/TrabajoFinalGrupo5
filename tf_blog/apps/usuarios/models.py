@@ -20,3 +20,10 @@ class Usuario(AbstractUser):
 
     def __str__(self):
         return self.get_full_name()
+
+    @property
+    def es_escritor(self):
+        if self.tipo == 2:
+            return True
+        else:
+            return False

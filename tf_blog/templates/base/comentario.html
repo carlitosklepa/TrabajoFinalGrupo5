@@ -1,7 +1,11 @@
 <div class="comment-tabs">
   <ul class="nav nav-tabs" role="tablist">
     <li class="active"><a href="#comments-logout" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Comments</h4></a></li>
-    <li class=""><a href="{% url 'comentarios:nuevo_comentario' object.id %}" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Add comment</h4></a></li>
+    {% if user.is_authenticated %}
+      <li class=""><a href="{% url 'comentarios:nuevo_comentario' object.id %}" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Add comment</h4></a></li>
+      {% else %}
+        <li class=""><a href="{% url 'ingresar' %}" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Iniciar Sesión</h4></a></li>
+      {% endif %}
   </ul>
 
   <div class="tab-content">
