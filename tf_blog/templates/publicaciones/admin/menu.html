@@ -17,6 +17,8 @@
   </div>
 </form> -->
 
+{% include "base/buscar.html" %}
+
 <div class="row" style="padding: 10px">
   <div class="col">
     <a href="{% url 'publicaciones:nuevo' %}" class="btn btn-success">Nueva Publicación</a>
@@ -52,5 +54,7 @@
       {% endfor %}
     </tbody>
 </table>
+
+{% include "base/paginador.html" %}
 
 {% endblock contenido %}
