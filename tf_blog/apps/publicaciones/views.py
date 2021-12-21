@@ -21,6 +21,7 @@ def detalle(request):
 	context = {}
 	return render(request, "publicaciones/detalle.html", context)
 """
+
 '''
 class ListarP_Admin(LoginRequiredMixin, AdminRequiredMixins, ListView):
 	template_name="publicaciones/admin/listar.html"
