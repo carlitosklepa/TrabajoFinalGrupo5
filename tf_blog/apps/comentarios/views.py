@@ -7,6 +7,7 @@ from apps.usuarios.models import Usuario
 from apps.publicaciones.models import Publicacion
 from .forms  import Comentario_Form
 from django.contrib.auth.mixins import LoginRequiredMixin
+from apps.core.mixins import AdminRequiredMixins
 
 
 class Nuevo_Comentario(LoginRequiredMixin, CreateView):
@@ -34,18 +35,28 @@ class ListarComentarios(ListView):
 		post_comentado = get_object_or_404(Publicacion, pk=self.kwargs.get('id_publicacion'))
 		return Comentario.objects.filter(post_comentado=post_comentado).order_by('fecha_publicacion')
 
-class EliminarC_Admin(DeleteView):
+class EliminarC_Admin(LoginRequiredMixin, AdminRequiredMixins, DeleteView):
 	template_name = "comentarios/admin/eliminar.html"
 	model = Comentario
-	context_object_name="categorias"
-	
-	def get_context_data(self, **kwargs):
-		context = super(EliminarC_Admin, self).get_context_data(**kwargs)
-		context["nombre_buscado"] = self.request.GET.get("nombre_categoria", "")
-		return context
+	context_object_name="comentarios"
 
+	def get_success_url(self, **kwargs):
+		return reverse_lazy("publicaciones:listar")
+
+
+
+	'''
+def get_success_url(self, **kwargs):
+	return reverse_lazy("comentarios:listar_comentarios", kwargs={"pk": self.kwargs["id_publicacion"]})
+
+
+	def get_queryset(self):
+		post_comentado = get_object_or_404(Publicacion, pk=self.kwargs.get('id_publicacion'))
+		return Comentario.objects.filter(post_comentado=post_comentado).order_by('fecha_publicacion')
+'''
 
 '''
+
 def get_queryset(self):
 	self.request
 	return Comentario.objects.filter(post_comentado=self.request.post_comentado).order_by("fecha_publicacion")

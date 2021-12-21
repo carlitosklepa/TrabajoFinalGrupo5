@@ -1,14 +1,17 @@
 <div class="comment-tabs">
   <ul class="nav nav-tabs" role="tablist">
     {% if user.is_authenticated %}
-      <li class=""><a href="{% url 'comentarios:nuevo_comentario' object.id %}" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Add comment</h4></a></li>
-      {% else %}
-        <li class=""><a href="{% url 'ingresar' %}" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Iniciar Sesión</h4></a></li>
-      {% endif %}
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'comentarios:listar_comentarios' object.id %}">Ver Comentarios</a>
+      <div style="padding: 10px;">
+        <li class=""><a class="btn btn-primary" href="{% url 'comentarios:nuevo_comentario' object.id %}" role="button">Nueno comentario</a></li>
+      </div>
+    {% else %}
+      <div style="padding: 10px;">
+        <li class=""><a class="btn btn-primary" href="{% url 'ingresar' %}" role="button">Iniciar Sesión</a></li>
+      </div>
+    {% endif %}
+    <div style="padding: 10px;">
+      <li class=""><a class="btn btn-primary" href="{% url 'comentarios:listar_comentarios' object.id %}" role="button">Ver Comentarios</a></li>
+    </div>
   </ul>
-
-{% include "comentarios/lista_comentarios.html" with p=publicacion %}
 
 </div>
