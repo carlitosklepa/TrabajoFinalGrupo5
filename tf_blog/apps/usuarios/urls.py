@@ -9,9 +9,9 @@ urlpatterns = [
 
 	# Admin
 
-	path("registro/", views.Registro.as_view(), name="registro"),
-    path("ingresar/", views.Registro.as_view(), name="ingresar"),
-    #path("Registrarme/", views.Registrarme.as_view(), name="registrarme")
+	#path("registro/", views.Registro.as_view(), name="registro"),
+    #path("ingresar/", views.Registro.as_view(), name="ingresar"),
+    path("registrarte/", views.Registrarte.as_view(), name="registrarte")
 	#path("Admin/Nuevo/", views.NuevaP_Admin.as_view(), name="admin_nuevo"),
 	#path("Admin/Editar/<int:pk>/", views.EditarP_Admin.as_view(), name="admin_editar"),
 

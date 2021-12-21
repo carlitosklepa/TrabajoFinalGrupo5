@@ -94,7 +94,7 @@ DATABASES = {
     }
 }
 '''
-
+'''
 
 DATABASES = {
     'default': {
@@ -108,22 +108,22 @@ DATABASES = {
 }
 
 '''
-        ============= BD-SERGIO =============
-=======
 
 
- >>>>>>> c22afb414974678f8e99555d7b0fac6a031700d1
+
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "blog_2",
+        'NAME': "blog1",
         'USER': "postgres",
         'PASSWORD': "1",
         "HOST": "localhost",
         "PORT": "5433"
     }
 }
-'''
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
