@@ -1,21 +1,29 @@
-<div class="tab-content">
-    <div class="tab-pane active">
-        <ul class="media-list">
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+<div style="padding: 50px;">
 
   {% if post_comentado_id == p.id %}
     {% for c in comentarios %}
-      <div class="media-body">
-          <div class="well well-lg">
-              <h4 class="media-heading text-uppercase reviews">{{c.autor}} </h4>
-              <p class="media-comment">
-                {{c.Contenido}}
-              </p>
-          </div>
+    <div style="padding: 10px;">
+    <div class="col-md-6">
+      <div class="h-100 p-5 bg-light border rounded-3">
+        <h2>{{c.autor}}</h2>
+        <p>{{c.Contenido}}</p>
+        {% if user.es_administrador %}
+        <div align="right">
+          <a href="{% url 'comentarios:admin_eliminar' c.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Eliminar</a>
         </div>
-          <a href="{% url 'comentarios:admin_eliminar' %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Eliminar</a>
+        {% endif %}
+      </div>
+    </div>
+    </div>
     {% endfor %}
   {% endif %}
 
-        </ul>
-    </div>
 </div>
+
+{% endblock contenido %}

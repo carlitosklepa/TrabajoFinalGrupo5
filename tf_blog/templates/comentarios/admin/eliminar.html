@@ -12,10 +12,10 @@
         <h1 class="cover-heading">Eliminando Comentario</h1>
         <p class="lead">Esta accion no se puede deshacer.</p>
         <form method="post">{% csrf_token %}
-          <p>¿Está seguro que quiere eliminar el comentario "{{ object }}"?</p>
+          <p>¿Está seguro?</p>
           {{ form }}
           <input type="submit" value="Confirmar">
-          <a href="{% url 'publicaciones:admin_menu' %}" class="btn btn-secondary">Cancelar</a>
+          <a href="{% url 'publicaciones:listar' %}" class="btn btn-secondary">Cancelar</a>
         </form>
       </main>
 

@@ -12,7 +12,6 @@ from django.views.generic.edit   import DeleteView
 from django.contrib.auth.decorators import login_required
 
 from apps.core.mixins import AdminRequiredMixins, PermisosMixins
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms  import Publicacion_Form, PublicacionFiltroForms
 from .models import Publicacion
