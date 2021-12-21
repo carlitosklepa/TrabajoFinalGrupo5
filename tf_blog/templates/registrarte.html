@@ -9,7 +9,7 @@
       <h1 class="mb-5 text-secondary">Crea tu cuenta, es gratis:</h1>
         <div class="row">
           <div class="mt-3 border p-4 bg-light shadow">
-            <form method ="POST">{% csrf_token %}
+            <form method ="POST" enctype="multipart/form-data">{% csrf_token %}
 
               {% include "includes/form_errors.html" %}
 

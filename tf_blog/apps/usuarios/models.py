@@ -11,7 +11,7 @@ class Usuario(AbstractUser):
 
     tipo = models.IntegerField(choices=TIPO_CHOICES, default=1)
 
-    #imagen_usuario = models.ImageField(upload_to="usuarios", null=True)
+    imagen_usuario = models.ImageField(upload_to="usuarios", null=True)
 
     es_administrador = models.BooleanField(default=False)
 
