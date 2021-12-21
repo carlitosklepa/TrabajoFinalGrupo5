@@ -2,20 +2,31 @@
 
 {% block contenido %}
 
-<h1>ESTA ES LA PLANTILLA PARA CREAR PUBLICACIONES</h1>
-<h1>ESTA ES LA PLANTILLA PARA CREAR PUBLICACIONES</h1>
-
-<form method="POST" enctype="multipart/form-data">{% csrf_token %}
-
-    {{form.as_p}}
-
+  <div class="container">
     <div class="row">
-      <div class="col">
-        <button type="submit" class="btn btn-success">Guardar</button>
-        <a href="" class="btn btn-danger">Cancelar</a>
-      </div>
+      <div>
+      <br>
+      <br>
+      <h1 class="mb-5 text-secondary">Escribe tu Publicación:</h1>
+        <div class="row">
+          <div class="mt-3 border p-4 bg-light shadow">
+            <form method ="POST">{% csrf_token %}
 
+              {% include "includes/form_errors.html" %}
+
+              {{form.as_p}}
+
+              <div class="row" style="padding:20px;">
+                <div class="col">
+                  <button type="submit" class="btn btn-success">Guardar</button>
+                  <a href="{% url 'publicaciones:listar' %}" class="btn btn-danger">Cancelar</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-  </form>
+  </div>
 
 {% endblock contenido %}

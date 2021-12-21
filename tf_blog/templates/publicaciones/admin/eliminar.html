@@ -1,0 +1,27 @@
+{% extends "base/base.html" %}
+
+{% block contenido %}
+<div style="padding: 50px;">
+<html lang="en">
+
+  <body class="text-center">
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Eliminando Publicación</h1>
+        <p class="lead">Esta accion no se puede deshacer.</p>
+        <form method="post">{% csrf_token %}
+          <p>¿Está seguro que quiere eliminar la publicación "{{ object }}"?</p>
+          {{ form }}
+          <input type="submit" value="Confirmar">
+          <a href="{% url 'publicaciones:admin_menu' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+      </main>
+
+    </div>
+
+</body></html>
+  </div>
+
+{% endblock contenido %}

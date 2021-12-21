@@ -1,32 +1,12 @@
 {% extends "base/base.html" %}
 
 {% block contenido %}
-<br>
-<br>
-<br>
+<div style="padding: 10px;">
 
-<!--
-<form class="form-inline my-2 my-lg-0" style="padding:50px;" method="GET">
-  <div class="row">
-    <div class="col-md-10">
-      <input class="form-control mr-sm-2" name="titulo" type="search" placeholder="Ingrese el titulo de la publicación..." aria-label="Search" value="{{nombre_buscado}}">
-    </div>
-    <div class="col-md-2">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-    </div>
-  </div>
-</form> -->
+  {% include "base/buscar.html" %}
 
-{% include "base/buscar.html" %}
-
-<div class="row" style="padding: 10px">
-  <div class="col">
-    <a href="{% url 'publicaciones:nuevo' %}" class="btn btn-success">Nueva Publicación</a>
-  </div>
-</div>
-
-<table class="table table-success table-striped">
-    <thead>
+  <table class="table">
+    <thead class="thead-dark">
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Titulo</th>
@@ -45,16 +25,16 @@
           <td>{% for c in p.categorias.all %} {{c.nombre}} {% endfor %}</td>
           <td>{{p.guardar_como_borrador}}</td>
           <td>
-            <a href="{% url 'publicaciones:post' p.id %}">Ver</a>
-            <a href="{% url 'publicaciones:admin_editar' p.id %}">Editar</a>
-            <a href="#">Eliminar</a>
+            <a href="{% url 'publicaciones:post' p.id %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Ver</a>
+            <a href="{% url 'publicaciones:admin_editar' p.id %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Editar</a>
+            <a href="{% url 'publicaciones:admin_eliminar' p.id %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Eliminar</a>
           </td>
 
         </tr>
       {% endfor %}
     </tbody>
-</table>
-
+  </table>
+</div>
 {% include "base/paginador.html" %}
 
 {% endblock contenido %}

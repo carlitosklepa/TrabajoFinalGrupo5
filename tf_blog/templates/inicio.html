@@ -12,16 +12,7 @@
 
 <!-- Custom styles for this template -->
 <link href="static/css/clean-blog.css" rel="stylesheet">
-<!--
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>{% block titulo %} Informa Blog {% endblock titulo %}</title>
-  </head>
--->
   <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -33,24 +24,21 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'contacto' %}">Sobre Nosotros</a>
+              <a class="nav-link" href="{% url 'ods' %}">ODS</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'publicaciones:listar' %}">Publicaciones</a>
             </li>
             {% if user.is_authenticated %}
+              {% if user.tipo == 2 %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'publicaciones:nuevo' %}">Nueva Publicación</a></li>
               {% if user.es_administrador %}
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'publicaciones:admin_menu' %}">Menu de admin</a>
                 </li>
-                {% if user.tipo == 2 %}
-                <li class="nav-item">
-                  <a class="nav-link" href="">Mis Publicaciones</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'publicaciones:nuevo' %}">Nueva Publicación</a></li>
-                {% endif %}
               {% endif %}
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'salir' %}">Salir</a>
             </li>
@@ -82,34 +70,11 @@
       </div>
     </header>
 
-    <!-- Barra de Busqueda
-    {% include "base/buscar.html" %}  -->
-
-    <!-- TRATAR DE HACER ANDAR: BARRA LATERAL-->
-    {% include "base/sidebar.html" %}
-
     <div class="container-fluid">
       <div class="row">
         <div class="col">
           <div class="row justify-content-center">
-
-            <!-- TRATAR DE HACER ANDAR: VER LOS ÚLTIMOS 3 POST
-            {% for p in publicaciones %}
-              <div class="col" style="text-align: center;">
-                {% if p.imagen_publicacion %}
-                  <img src="{{p.imagen_publicacion.url}}" alt="" class="bd-placeholder-img rounded-circle" width="140" height="140">
-                {% else %}
-                  <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-                {% endif %}
-                <h2 style="text-align: center;">{{p.titulo}}</h2>
-                <p>{{p.resumen}}</p>
-                <p><a class="btn btn-secondary" href="{% url 'publicaciones:post' p.id %}">Ver Publicación »</a></p>
-              </div>
-            {% endfor %}-->
-
-
           <div class="border-top my-3"></div>
-
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="post-preview">
               <a href="{% url 'ods' %}">
@@ -122,50 +87,16 @@
               </a>
               <p class="post-meta">Publicado por
                 <a href="#">Grupo 5</a>
-                el 20 de Diciembre 2021</p>
+                el 21 de Diciembre 2021</p>
             </div>
             <div class="clearfix">
               <a class="btn btn-primary float-right" href="{% url 'ods' %}">Seguir leyendo &rarr;</a>
-              <hr>
-            <!-- Pager
-            <div class="clearfix">
-              <a class="btn btn-primary float-right" href="{% url 'ods' %}">Seguir leyendo &rarr;</a> -->
             </div>
           </div>
-
-        {% if user.es_administrador %}
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="post-preview">
-              <a href="{% url 'ods' %}">
-                <h2 class="post-title">
-                  VOY A VER ESTO SOLO SI SOY ADMINISTRADOR
-                </h2>
-                <h3 class="post-subtitle">
-                  Los objetivos de desarrollo sostenible (ODS) son una llamada a la acción a todos los países para erradicar la pobreza y proteger el planeta así como garantizar la paz y la prosperidad.
-                </h3>
-              </a>
-              <p class="post-meta">Posted by
-                <a href="#">Start Bootstrap</a>
-                on September 24, 2018</p>
-            </div>
-              <hr>
-            <!-- Pager -->
-            <div class="clearfix">
-              <a class="btn btn-primary float-right" href="#">Siguientes Posts &rarr;</a>
-            </div>
-          </div>
-        {% endif %}
-
-
-
-
         </div>
       </div>
     </div>
 
-
-
-    <!-- Footer   -->
     {% include "base/footer.html" %}
 
     <!-- Bootstrap core JavaScript -->

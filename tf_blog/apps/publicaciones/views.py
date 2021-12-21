@@ -85,7 +85,10 @@ class EditarP_Admin(UpdateView):
 	def get_success_url(self, **kwargs):
 		return reverse_lazy("publicaciones:admin_menu")
 
-#class EliminarP_Admin(DeleteView):
+class EliminarP_Admin(DeleteView):
+	template_name = "publicaciones/admin/eliminar.html"
+	model = Publicacion
+	success_url = reverse_lazy('publicaciones:admin_menu')
 
 class Post(DetailView):
 	template_name = "publicaciones/post.html"
@@ -157,7 +160,7 @@ class MenuP(LoginRequiredMixin, AdminRequiredMixins, ListView):
 	model = Publicacion
 	context_object_name="publicaciones"
 	# permisos_requeridos = ["add_users"]
-	paginate_by = 2
+	paginate_by = 10
 
 	def get_context_data(self, **kwargs):
 		context = super(MenuP, self).get_context_data(**kwargs)
